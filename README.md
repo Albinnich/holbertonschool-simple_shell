@@ -1,29 +1,68 @@
-C - Simple Shell
+![Logo](https://coursereport-s3-production.global.ssl.fastly.net/uploads/school/logo/266/original/instagram-feed180.jpg)
 
-Learning Objectives
+# C - Simple Shell Project
 
-At the end of this project, you are expected to be able to explain to anyone, without the help of Google:
+Simple UNIX command interpreter realized by Albina Ismayilova and Rauf Ahmadzada
 
-General
+General:
 
-Who designed and implemented the original Unix operating system
-Who wrote the first version of the UNIX shell
-Who invented the B programming language (the direct predecessor to the C programming language)
-Who is Ken Thompson
-How does a shell work
-What is a pid and a ppid
-How to manipulate the environment of the current process
-What is the difference between a function and a system call
-How to create processes
-What are the three prototypes of main
-How does the shell use the PATH to find the programs
-How to execute another program with the execve system call
-How to suspend the execution of a process until one of its children terminates
-What is EOF / “end-of-file”?
+Who designed and implemented the original Unix operating system:
 
-Requirements
+- Dennis Ritchie and Ken Thompson
 
-General
+Who wrote the first version of the UNIX shell:
+
+- The first Unix shell was the Thompson shell, sh, written by Ken Thompson at Bell Labs
+
+Who invented the B programming language (the direct predecessor to the C programming language):
+
+- B is a programming language developed at Bell Labs circa 1969 by Ken Thompson and Dennis Ritchie
+
+Who is Ken Thompson:
+
+- Kenneth Lane Thompson (born February 4, 1943) is an American pioneer of computer science
+
+How does a shell work:
+
+- The shell manages the interaction between you and the operating system by prompting you for input, interpreting that input for the operating system, and then handling any resulting output from the operating system. Shells provide a way for you to communicate with the operating system
+
+What is a pid and a ppid:
+
+- When a process is started, it is given a unique number called process ID (PID) that identifies that process to the system. PPID is a parent process ID
+
+How to manipulate the environment of the current process:
+
+- The environment of the current process can be manipulated using environment variables. Commands like export in Unix/Linux shells are used to set environment variables
+
+What is the difference between a function and a system call:
+
+- A function is a piece of code that performs a specific task and is part of a program. A system call is a request for a service from the operating system kernel
+
+How to create processes:
+
+- Processes can be generated using system calls such as fork() in the C programming language. The fork() system call initiates the creation of a new process by duplicating the existing or calling process
+
+What are the three prototypes of main:
+
+- The three prototypes of the main function in C are: - int main(void) - int main(int argc, char *argv[]) - int main(int argc, char *argv[], char *envp[])
+
+How does the shell use the PATH to find the programs:
+
+- The shell searches each directory in the path. If a command is not found, long searches can slow down system performance. The search path is read from left to right, so you should put directories for commonly used commands at the beginning of the path
+
+How to execute another program with the execve system call:
+
+- In C, the execve system call is used to execute a new program. It replaces the current process image with a new process image specified by the given file path
+
+How to suspend the execution of a process until one of its children terminates:
+
+- The wait() system call is used to suspend the execution of a process until one of its child processes terminates
+
+What is EOF /end-of-file?
+
+- EOF (End-of-File) is a condition in a file or stream of data that indicates that there is no more data to be read. In Unix-like systems, pressing Ctrl+D at the beginning of a line in the terminal sends an EOF signal
+
+General requirements for the project:
 
 1. Allowed editors: vi, vim, emacs
 2. All your files will be compiled on Ubuntu 20.04 LTS using gcc, using the options -Wall -Werror -Wextra -pedantic -std=gnu89
@@ -33,113 +72,27 @@ General
 6. Your shell should not have any memory leaks
 7. No more than 5 functions per file
 8. All your header files should be include guarded
-9. Use system calls only when you need to (why?)
+9. Use system calls only when you need to
 
-GitHub
-There should be one project repository per group. If you clone/fork/whatever a project repository with the same name before the second deadline, you risk a 0% score.
-
-More Info
-
-Output
-Unless specified otherwise, your program must have the exact same output as sh (/bin/sh) as well as the exact same error output.
-The only difference is when you print an error, the name of the program must be equivalent to your argv[0] (See below)
-Example of error with sh:
-
-$ echo "qwerty" | /bin/sh
-/bin/sh: 1: qwerty: not found
-$ echo "qwerty" | /bin/../bin/sh
-/bin/../bin/sh: 1: qwerty: not found
-$
-Same error with your program hsh:
-
-$ echo "qwerty" | ./hsh
-./hsh: 1: qwerty: not found
-$ echo "qwerty" | ./././hsh
-./././hsh: 1: qwerty: not found
-$
-
-List of allowed functions and system calls+
-all functions from string.h
-access (man 2 access)
-chdir (man 2 chdir)
-close (man 2 close)
-closedir (man 3 closedir)
-execve (man 2 execve)
-exit (man 3 exit)
-_exit (man 2 _exit)
-fflush (man 3 fflush)
-fork (man 2 fork)
-free (man 3 free)
-getcwd (man 3 getcwd)
-getline (man 3 getline)
-getpid (man 2 getpid)
-isatty (man 3 isatty)
-kill (man 2 kill)
-malloc (man 3 malloc)
-open (man 2 open)
-opendir (man 3 opendir)
-perror (man 3 perror)
-printf (man 3 printf)
-fprintf (man 3 fprintf)
-vfprintf (man 3 vfprintf)
-sprintf (man 3 sprintf)
-putchar (man 3 putchar)
-read (man 2 read)
-readdir (man 3 readdir)
-signal (man 2 signal)
-stat (__xstat) (man 2 stat)
-lstat (__lxstat) (man 2 lstat)
-fstat (__fxstat) (man 2 fstat)
-strtok (man 3 strtok)
-wait (man 2 wait)
-waitpid (man 2 waitpid)
-wait3 (man 2 wait3)
-wait4 (man 2 wait4)
-write (man 2 write)
 Compilation
+
 Your shell will be compiled this way:
+$ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 
-gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
-Testing
-Your shell should work like this in interactive mode:
+Tasks:
 
-$ ./hsh
-($) /bin/ls
-hsh main.c shell.c
-($)
-($) exit
-$
-But also in non-interactive mode:
-
-$ echo "/bin/ls" | ./hsh
-hsh main.c shell.c test_ls_2
-$
-$ cat test_ls_2
-/bin/ls
-/bin/ls
-$
-$ cat test_ls_2 | ./hsh
-hsh main.c shell.c test_ls_2
-hsh main.c shell.c test_ls_2
-$
-Checks
-The Checker will be released at the end of the project (1-2 days before the deadline). We strongly encourage the entire class to work together to create a suite of checks covering both regular tests and edge cases for each task. See task 8. Test suite.
-
-After the deadline, you will need to fork the repository if it’s not on your Github account to be able to be corrected by the checker.
-
-Tasks
 0. README, man, AUTHORS
-mandatory
+
 Write a README
 Write a man for your shell.
 You should have an AUTHORS file at the root of your repository, listing all individuals having contributed content to the repository. Format, see Docker
 
 1. Betty would be proud
-mandatory
+
 Write a beautiful code that passes the Betty checks
-  
+
 2. Simple shell 0.1
-mandatory
+
 Write a UNIX command line interpreter.
 
 Usage: simple_shell
@@ -151,40 +104,46 @@ The command lines are simple, no semicolons, no pipes, no redirections or any ot
 The command lines are made only of one word. No arguments will be passed to programs.
 If an executable cannot be found, print an error message and display the prompt again.
 Handle errors.
-You have to handle the “end of file” condition (Ctrl+D)
-You don’t have to:
+You have to handle the end of file condition (Ctrl+D)
+You don't have to:
 
 use the PATH
 implement built-ins
 handle special characters : ", ', `, \, *, &, #
 be able to move the cursor
 handle commands with arguments
-execve will be the core part of your Shell, don’t forget to pass the environ to it…
+execve will be the core part of your Shell, don't forget to pass the environ to it
 
 3. Simple shell 0.2
-mandatory
+
 Simple shell 0.1 +
 
 Handle command lines with arguments
-  
-0/3 pts
+
 4. Simple shell 0.3
-mandatory
+
 Simple shell 0.2 +
 
 Handle the PATH
-fork must not be called if the command doesn’t exist
+fork must not be called if the command doesn't exist
 
 5. Simple shell 0.4
-mandatory
+
 Simple shell 0.3 +
 
 Implement the exit built-in, that exits the shell
 Usage: exit
-You don’t have to handle any argument to the built-in exit
+You don't have to handle any argument to the built-in exit
 
 6. Simple shell 1.0
-mandatory
+
 Simple shell 0.4 +
 
 Implement the env built-in, that prints the current environment
+
+
+## Authors
+
+- Albina Ismayilova [@Albinnich](https://www.github.com/Albinnich)
+- Rauf Ahmadzada [@Raid-dev](https://github.com/Raid-dev)
+
