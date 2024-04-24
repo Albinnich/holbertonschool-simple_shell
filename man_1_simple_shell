@@ -1,0 +1,45 @@
+.TH SIMPLE_SHELL 1 "April 2024" "C - Simple Shell Project"
+.SH NAME
+simple_shell \- a simple shell implementation in UNIX
+
+.SH SYNOPSIS
+.B simple_shell
+[\fIOPTIONS\fR]... [\fICOMMAND\fR]
+
+.SH DESCRIPTION
+.PP
+The simple_shell is a basic shell program written in C as part of C - Simple Shell Group Project. It provides a simple command-line interface and executes them accordingly.
+
+.SH OPTIONS
+.TP
+.B -h, --help
+Display help information
+
+.SH USAGE
+To start the simple shell, run below command in your terminal:
+
+.BR simple_shell
+
+.SH EXAMPLE
+.PP
+Run a simple command:
+.nf
+.B simple_shell pwd
+.fi
+
+.SH AUTHORS
+Albina Ismayilova <9078@holbertonstudents.com>
+Rauf Ahmadzada <9055@holbertonstudents.com>
+
+.SH SEE ALSO
+.I sh(1)
+,
+.I bash(1)
+,
+.I _printf(3)
+
+.SH BUGS
+No known bugs. In case any, please report to 9078@holbertonstudents.com or 9055@holbertonstudents.com
+
+.SH COPYRIGHT
+This manual page was written by Albina Ismayilova and Rauf Ahmadzada for C - Simple Shell project at Holberton School
