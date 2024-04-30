@@ -12,6 +12,7 @@ int main(int argc, char **argv)
 	(void)argc, (void)argv;
 	char *buf = NULL;
 	char *token;
+	char *path;
 	size_t count = 0;
 	ssize_t nread;
 	pid_t child_pid;
@@ -21,13 +22,14 @@ int main(int argc, char **argv)
 
 	while (1)
 	{
-	write(STDOUT_FILENO, "SimpleShell$ ", 12);
-	nread = getline(&buf, &count, stdin);
+		if (isatty(STDIN_FILENO))
+			write(STDOUT_FILENO, "SimpleShell$ ", 12);
+			
+		nread = getline(&buf, &count, stdin);
 
 	if (nread == -1)
 	{
-		perror("Exiting shell");
-		exit(1);
+		exit(0);
 	}
 
 	token = strtok(buf, " \n");
@@ -44,6 +46,8 @@ int main(int argc, char **argv)
 
 	array[i] = NULL;
 
+	path = get_file_path(array[0]);
+
 	child_pid = fork();
 
 	if (child_pid == -1)
@@ -54,7 +58,7 @@ int main(int argc, char **argv)
 
 	if (child_pid == 0)
 	{
-		if (execve(array[0], array, NULL) == -1)
+		if (execve(path, array, NULL) == -1)
 		{
 			perror("Execution failed");
 			exit(97);
@@ -65,6 +69,7 @@ int main(int argc, char **argv)
 		wait(&status);
 	}
 	}
+	free(path);
 	free(buf);
 	return (0);
 }
