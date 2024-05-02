@@ -14,8 +14,11 @@ char *_getline(void)
 
 	check = getline(&line, &size, stdin);
 	if (check == -1)
+	{
 		free(line);
-	else
-		return (line);
-	return (NULL);
+		return (NULL);
+	}
+	if (line[check - 1] == '\n')
+		line[check - 1] = '\0';
+	return (line);
 }
