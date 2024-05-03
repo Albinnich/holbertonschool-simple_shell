@@ -1,4 +1,7 @@
 #include "main.h"
+#include <stddef.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 /**
  * handle_env - Function to check if first element is env

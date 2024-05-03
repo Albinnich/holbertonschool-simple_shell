@@ -8,6 +8,8 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 #include <stddef.h>
+#include <fcntl.h>
+extern char **environ;
 
 int main(void);
 char *_getline(void);
