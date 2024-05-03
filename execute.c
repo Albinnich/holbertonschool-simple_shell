@@ -13,6 +13,6 @@ void execute_command(char *line, char **argv)
 	{
 		perror("execve");
 		free(buffer);
-		exit(EXIT_FAILED);
+		exit(EXIT_FAILURE);
 	}
 }

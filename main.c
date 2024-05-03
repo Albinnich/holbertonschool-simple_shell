@@ -9,7 +9,7 @@
 int main(void)
 {
 	char *command;
-	int status;
+	int status = 0;
 
 	while (1)
 	{
