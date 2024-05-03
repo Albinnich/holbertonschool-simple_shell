@@ -12,7 +12,7 @@ void execute_command(char *line, char **argv)
 	if (execve(line, argv, environ) == -1)
 	{
 		perror("execve");
-		free(buffer);
+		free(line);
 		exit(EXIT_FAILURE);
 	}
 }
