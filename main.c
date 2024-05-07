@@ -1,4 +1,5 @@
 #include "main.h"
+#include <string.h>
 
 /**
  * main - Main code for shell script
@@ -15,7 +16,7 @@ int main(void)
 	{
 		if (isatty(STDIN_FILENO))
 			printf("$ ");
-			
+
 		command = _getline();
 
 	if (command == NULL)
@@ -25,7 +26,7 @@ int main(void)
 		free(command);
 		exit(0);
 	}
-	status = execute(command);
+	status = execute_command(command);
 	if (status == 2)
 	{
 		exit(2);
