@@ -1,4 +1,5 @@
 #include "main.h"
+#include <string.h>
 
 /**
  * line_div - divides string into parts
