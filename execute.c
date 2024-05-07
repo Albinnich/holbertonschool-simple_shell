@@ -2,17 +2,12 @@
 
 /**
  * execute_command - Function to execute given command
- * @line: input from user
- * @argv: arguments array
- * Return: status
+ * @command: Input from user
+ * Return: Result.
  */
 
-void execute_command(char *line, char **argv)
+void execute_command(char *command)
 {
-	if (execve(line, argv, environ) == -1)
-	{
-		perror("execve");
-		free(line);
-		exit(EXIT_FAILURE);
-	}
+	if (execve(command, NULL, NULL) == -1)
+		perror(command);
 }
