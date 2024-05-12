@@ -1,15 +1,11 @@
 #include "main.h"
-#include <stddef.h>
-#include <sys/types.h>
-#include <sys/wait.h>
 
 /**
- * handle_env - Function to check if first element is env
- * @line: input from user
- * Return: status
+ * handle_env - Prints all enviroment variables
+ * Return: Nothing.
  */
 
-void handle_env(char *line)
+void handle_env(void)
 {
 	char **env = environ;
 
@@ -18,6 +14,4 @@ void handle_env(char *line)
 		printf("%s\n", *env);
 		env++;
 	}
-	free(line);
-	exit(EXIT_SUCCESS);
 }
