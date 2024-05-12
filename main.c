@@ -1,36 +1,29 @@
 #include "main.h"
-#include <string.h>
 
 /**
- * main - Main code for shell script
+ * main - Simple shell that executes commands
+ * @argc: The count of arguments
+ * @argv: The list of arguments
  *
- * Return: integer
+ * Return: 0 on success, 1 on failure.
  */
 
-int main(void)
+int main(int argc, char *argv[])
 {
-	char *command;
-	int status = 0;
+	char *input_buffer;
+	(void)argc;
 
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
-			printf("$ ");
+			write(STDOUT_FILENO, "Xshell> ", 8);
 
-		command = _getline();
+		input_buffer = read_input();
 
-	if (command == NULL)
-		break;
-	if (strcmp(command, "exit") == 0)
-	{
-		free(command);
-		exit(0);
+		execute_cmd(input_buffer, argv);
+
+		free(input_buffer);
 	}
-	status = execute_command(command);
-	if (status == 2)
-	{
-		exit(2);
-	}
-	}
-	return (status);
+
+	return (0);
 }
