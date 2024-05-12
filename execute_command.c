@@ -16,7 +16,7 @@ int execute_cmd(char *cmd, char *argv[])
 	char *shell_name, *path;
 
 	shell_name = argv[0];
-	num_args = process_line(cmd, args);
+	num_args = line_div(cmd, args);
 
 	if (num_args == 0)
 		return (127);
