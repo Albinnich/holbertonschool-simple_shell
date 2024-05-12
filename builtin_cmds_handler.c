@@ -19,7 +19,7 @@ int handle_builtin_commands(char *cmd, char **args, int status)
 	}
 	else if (strcmp(args[0], "env") == 0)
 	{
-		get_env();
+		handle_env();
 		return (1);
 	}
 
