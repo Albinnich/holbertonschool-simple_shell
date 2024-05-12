@@ -3,23 +3,28 @@
 
 /**
  * line_div - divides string into parts
- * @command: Command string for parsing
- * @arr: Array of strings for storing arguments
+ * @line: Command string for parsing
+ * @args: Array of strings for storing arguments
  *
- * Return: Char array
+ * Return: Char array.
  */
 
-char **line_div(char *command, char **arr)
+int line_div(char *line, char *args[])
 {
+	int num_tokens = 0;
 	char *token;
-	int i = 0;
 
-	token = strtok(command, " \n\t");
-	while (token != NULL && i < 63)
+	/* Tokenize the line into commands and store them in cmds */
+	token = strtok(line, " \n");
+
+	while (token)
 	{
-		arr[i++] = token;
-		token = strtok(NULL, " \n\t");
+		args[num_tokens] = token;
+		token = strtok(NULL, " \n");
+		num_tokens++;
 	}
-	arr[i++] = NULL;
-	return (arr);
+
+	args[num_tokens] = NULL;
+
+	return (num_tokens);
 }
